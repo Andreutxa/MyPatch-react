@@ -14,8 +14,8 @@ export const logout = () => {
 }
 
 //userInfo ??
-export const getProfile = () => {
-    return axios.get('/user/:id')
+export const getProfile = (id) => {
+    return axios.get(`/user/${id}`)
         .then((res) => res.data)
 }
 
@@ -34,8 +34,8 @@ export const createReminder = () => {
         .then((res) => res.data)
 }
 
-export const editReminder = (id) => {
-    return axios.patch(`/reminder/${id}/edit`)
+export const editReminder = (id, body) => {
+    return axios.patch(`/reminder/${id}/edit`, body)
     .then((res) => res.data)
 }
 

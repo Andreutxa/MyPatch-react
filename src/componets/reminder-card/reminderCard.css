@@ -15,9 +15,9 @@
   font-weight: bolder;
 }
 
-.product-card__price:after {
+/* .product-card__price:after {
   content: '€';
-}
+} */
 
 .product-card__user {
   font-size: 1rem;

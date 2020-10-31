@@ -5,24 +5,45 @@ import {Link, Redirect} from 'react-router-dom'
 
 export default function ReminderSingle(props) {
     const [rem, setRem] = useState([])
-    const [user] = useState(props.user)
+    const [showModal, setShowModal] = useState(false)
+    const [body, setBody] = useState(null)
     const remId = props.location.state.id
+
+    // const [user] = useState(props.user) <-- usar en profile
     // const [reviews, setReviews] = useState([])
 
     useEffect(() => {
         singleReminder(remId)
             .then(response => {
+                const {title, description, date, type} = response.reminder
                 setRem(response.reminder)
-                // setReviews(reminder.prod.reviews)
+                setBody({ title, description, date, type })
             })
             .catch((e) => console.log(e))
+            
     }, [])
 
+    const handleChange = (val, name) => {
+        setBody({
+            ...body,
+            [name]: val
+        })
+    }
+
     const onSubmit = (e) => {
-        console.log('clicked')
+       
         e.preventDefault()
-        editReminder(remId)
-            .then(editedReminder => setRem(editedReminder))
+
+        console.log('body', body)
+        editReminder(remId, body)
+            .then(editedReminder => {
+                console.log('Reminder edited', editedReminder)
+                return (
+                    setRem(editedReminder),
+                    setShowModal(false)
+                    )
+            })
+            
             .catch((e) => console.log(e))
     }
 
@@ -36,9 +57,13 @@ export default function ReminderSingle(props) {
             .catch((e) => console.log(e))
     }
 
+    const redirectToReminders = (e) => {
+            e.preventDefault()
+            return <Redirect to='/reminders' />
+    }
+
     return (
-        <>
-            <div>Hellooooooo</div>
+        <div>
             <div>{rem.title}</div>
             <div>{rem.description}</div>
             <div>{rem.type}</div>
@@ -63,11 +88,11 @@ export default function ReminderSingle(props) {
             <hr />
 
 
-            <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Edit reminder</button>
-            <Link onClick={deleteReminder} className="product-card__single">Delete reminder</Link>
+            <button type="button" className="btn btn-primary" onClick={() => setShowModal(true)}>Edit reminder</button>
+            <Link to='/reminders' onClick={deleteReminder, redirectToReminders} className="product-card__single">Delete reminder</Link>
 
-
-            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            {showModal && 
+            <div className="modal" id="exampleModal" style={{ display: "block"}}>
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -80,29 +105,33 @@ export default function ReminderSingle(props) {
                             <form>
                                 <div className="form-group">
                                     <label htmlFor="recipient-name" className="col-form-label">Title</label>
-                                    <input type="text" className="form-control" id="recipient-name" name="name" placeholder={rem.title} />
+                                    <input value={body?.title} type="text" className="form-control" id="recipient-name" name="title" placeholder={rem.title} onChange={(e) => handleChange(e.target.value, e.target.name)}/>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="exampleFormControlTextarea1">Description</label>
-                                    <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" placeholder={rem.description}></textarea>
+                                    <textarea value={body?.description} className="form-control" id="exampleFormControlTextarea1" name="description" rows="3" placeholder={rem.description} onChange={(e) => handleChange(e.target.value, e.target.name)}></textarea>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="recipient-price" className="col-form-label">Type</label>
-                                    <input type="text" className="form-control" id="recipient-price" name="price" placeholder={rem.type} />
+                                    <input value={body?.type} type="text" className="form-control" id="recipient-price" name="type" placeholder={rem.type} onChange={(e) => handleChange(e.target.value, e.target.name)}/>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="recipient-image" className="col-form-label">Date</label>
-                                    <input type="text" className="form-control" id="recipient-image" name="image" placeholder={rem.date} />
+                                    <input value={body?.date} type="text" className="form-control" id="recipient-image" name="date" placeholder={rem.date} onChange={(e) => handleChange(e.target.value, e.target.name)}/>
                                 </div>
+                               
+                                    <div className="modal-footer">
+                                        <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)} >Close</button>
+                                        <button type="submit" className="btn btn-primary" onClick={onSubmit} >Edit reminder</button>
+                                    </div>
+                               
+                               
                             </form>
                         </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" className="btn btn-primary" onClick={onSubmit}>Edit reminder</button>
-                        </div>
                     </div>
-                </div>
+                </div> 
             </div>
-        </>
+            }
+        </div>
     )
 }

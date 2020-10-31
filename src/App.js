@@ -1,10 +1,14 @@
 import React, {useState} from 'react'
 import {Redirect, Route, Switch} from 'react-router-dom'
-import AuthenticateRouter from './componets/authenticateRouter/AuthenticateRouter'
-import Header from './componets/header/Header'
+import AuthenticateRoute from './componets/AuthenticateRoute/AuthenticateRoute'
+// import Header from './componets/header/Header'
+import Home from './componets/home/Home'
 import Login from './componets/login/Login'
+import Profile from './componets/Profile/Profile'
+import Contraceptive from './componets/Contraceptive/Contraceptive'
 import ReminderList from './componets/reminder-list/ReminderList'
 import ReminderSingle from './componets/reminderSingle/ReminderSingle'
+import CalendarView from './componets/Calendar/CalendarView'
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
@@ -29,20 +33,37 @@ function App() {
 
     <div className="App">
 
-      <Header user={user} onLogOut={onLogOut} />
-
         <Switch>
 
-          <AuthenticateRouter
-            path='/reminders'
-            render={(props) => <ReminderList {...props} user={user} onLogOut={onLogOut} />}
-            user={user}
-          />
           <Route
             path='/login'
             render={(props) => <Login {...props} user={user} onLogIn={onLogIn} />}
           />
-          <Route path='/reminder/:id' render={(props) => <ReminderSingle {...props} user={user} />} />
+          <Route 
+            path='/home' 
+            render={(props) => <Home {...props} user={user} onLogOut={onLogOut} />} 
+          />
+          <Route 
+            path='/profile' 
+            render={(props) => <Profile {...props} user={user} onLogOut={onLogOut} />} 
+          />
+          <Route 
+            path='/contraceptive' 
+            render={(props) => <Contraceptive {...props} user={user} onLogOut={onLogOut} />} 
+          />
+          <Route 
+            path='/calendar' 
+            render={(props) => <CalendarView {...props} user={user} onLogOut={onLogOut} />}
+          />
+          <AuthenticateRoute
+            path='/reminders'
+            render={(props) => <ReminderList {...props} user={user} onLogOut={onLogOut} />}
+            user={user}
+          />
+          <Route 
+            path='/reminder/:id' 
+            render={(props) => <ReminderSingle {...props} user={user} onLogOut={onLogOut} />} 
+          />
           <Redirect to='/reminders' />
           
         </Switch>
