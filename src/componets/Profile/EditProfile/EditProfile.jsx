@@ -14,27 +14,9 @@ export default function EditProfile({ user, onLogOut, onLogIn }) {
     getProfile(user.id)
     .then((response) => {
       console.log(response);
-      const {
-        email,
-        name,
-        lastName,
-        age,
-        period,
-        durationPeriod,
-        contraceptionMth,
-        avatar,
-      } = response;
+      const { email, name, lastName, age, period, durationPeriod, contraceptionMth, avatar} = response;
       setProfile(response);
-      setBody({
-        email,
-        name,
-        lastName,
-        age,
-        period,
-        durationPeriod,
-        contraceptionMth,
-        avatar,
-      });
+      setBody({ email, name, lastName, age, period, durationPeriod, contraceptionMth, avatar});
     });
   }, []);
 

@@ -12,8 +12,12 @@ export default function PeriodRoutine({user, onLogOut, props}) {
 
     // useEffect(() => {
     //     const newRoutine = routine.push(user.period)
-    //     setRoutine(newRoutine)
+    //     // setRoutine((old) => {
+    //     //      [...old, newRoutine]
+    //     // })
     // }, [routine, user.period])
+
+    //se crea bucle infinito 
 
     const routine = []
 
@@ -34,10 +38,18 @@ export default function PeriodRoutine({user, onLogOut, props}) {
             <div style={{overflow: 'scroll', height: '200px'}}>
                 {routine.map((day) => {
                     return (
-                        <div className='routine-containers'>
-                            <h6>Your friend arrived on time</h6>
-                            <p>{day}</p>
+                        <div>
+                            <div className='routine-containers'>
+                                <h6>Your friend arrived on time</h6>
+                                <p>{day}</p>
+                            </div>
+                            {/* <div className='routine-containers'>
+                                <h6>Your friend arrived late (x days)</h6>
+                                <p>{day}</p>
+                            </div>  */}
                         </div>
+                        
+                       
                     )
                 })}
             </div>

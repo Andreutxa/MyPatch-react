@@ -3,21 +3,18 @@ import MyCalendar from "./Calendar";
 import { Link } from "react-router-dom";
 import Dropdown from "../Dropdown/Dropdown";
 import Nav from "../Nav/Nav";
-import {
-  getReminders,
-  createReminder,
-} from "../../services/mypatch-api.service";
+import { getReminders, createReminder} from "../../services/mypatch-api.service";
 import "./CalendarView.css";
 
 export default function CalendarView({ user, onLogOut }) {
   const [reminderList, setReminderList] = useState([]);
   const [body, setBody] = useState(null);
-  // const [showModal, setShowModal] = useState(false)
+  const [periodDate, setPeriodDate] = useState(user.period)
   const [error, setError] = useState();
 
   useEffect(() => {
     getReminders()
-      .then((reminders) => setReminderList(reminders))
+      .then((reminders) => setReminderList((old) => [...old, ...formattedList(reminders)]))
       .catch((e) => {
         if (e.response.status === 401) {
           onLogOut();
@@ -25,7 +22,33 @@ export default function CalendarView({ user, onLogOut }) {
           setError(true);
         }
       });
+    // setReminderList((old) => {
+    //     return [...old, formattedPeriod];
+    // })
   }, []);
+
+  useEffect(() => {
+    const formattedPeriod = (periodDate) => {
+        return ({
+            title: 'Period',
+            start: formattedDate(periodDate),
+            end: endPeriodDate(periodDate),
+            backgroundColor: '#444998'
+          })
+    };
+    const endPeriodDate = (periodDate) => {
+        const splittedDate = periodDate.split("/");
+        let endDayNum = Number(splittedDate[0]);
+        let realEndDay = endDayNum += user.durationPeriod
+        let realEndDayString = realEndDay.toString()
+        let datecompleted = periodDate.replace(splittedDate[0] , realEndDayString)
+  
+        return datecompleted.split("/").reverse().join("-");
+    }
+      setReminderList((old) => {
+          return [...old, formattedPeriod(periodDate)]
+      })
+  }, [periodDate, user])
 
   const handleChange = (val, name) => {
     setBody({
@@ -50,14 +73,17 @@ export default function CalendarView({ user, onLogOut }) {
       .catch((e) => console.log(e));
   };
 
-  const formatedDate = (date) => {
+  const formattedDate = (date) => {
     return date.split("/").reverse().join("-");
   };
 
-  const formattedList = reminderList.reduce((acc, e) => {
-    acc.push({ title: e.title, date: formatedDate(e.date) });
-    return acc;
-  }, []);
+  const formattedList = (reminders) => {
+    return reminders.reduce((acc, e) => {
+        acc.push({ title: e.title, date: formattedDate(e.date) });
+        return acc;
+    }, [])
+};
+    console.log('hola',reminderList)
 
   return (
     <div className="calendar-flex">
@@ -72,7 +98,7 @@ export default function CalendarView({ user, onLogOut }) {
       </div>
 
       <div className="calendar-position">
-        <MyCalendar events={formattedList} />
+        <MyCalendar events={reminderList} user={user} />
       </div>
 
       <div className="calendar-btn">
@@ -93,7 +119,7 @@ export default function CalendarView({ user, onLogOut }) {
       <div
         className="modal fade"
         id="exampleModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
@@ -115,7 +141,7 @@ export default function CalendarView({ user, onLogOut }) {
             <div className="modal-body">
               <form>
                 <div className="form-group">
-                  <label for="recipient-name" className="col-form-label">
+                  <label htmlFor="recipient-name" className="col-form-label">
                     Title
                   </label>
                   <input
@@ -124,52 +150,36 @@ export default function CalendarView({ user, onLogOut }) {
                     name="title"
                     className="form-control"
                     id="recipient-name"
-                    onChange={(e) =>
-                      handleChange(e.target.value, e.target.name)
-                    }
+                    onChange={(e) => handleChange(e.target.value, e.target.name)}
                   />
                 </div>
                 <div className="form-group">
-                  <label for="message-text" className="col-form-label">
-                    Type
-                  </label>
+                  <label htmlFor="message-text" className="col-form-label">Type</label>
                   <select
                     value={body?.type}
                     name="type"
-                    class="custom-select"
-                    onChange={(e) =>
-                      handleChange(e.target.value, e.target.name)
-                    }
+                    className="custom-select"
+                    onChange={(e) => handleChange(e.target.value, e.target.name)}
                   >
-                    <option selected value="Period">
-                      Period
-                    </option>
+                    <option value="Period">Period</option>
                     <option value="Take pill">Take pill</option>
                     <option value="Change patch">Change patch</option>
                     <option value="Change ring">Change ring</option>
                     <option value="Take injection">Take injection</option>
                     <option value="Change IUD">Change IUD</option>
                     <option value="Change IUS">Change IUS</option>
-                    <option value="Medical appointment">
-                      Medical appointment
-                    </option>
-                    <option value="Gynecologist appointment">
-                      Gynecologist appointment
-                    </option>
+                    <option value="Medical appointment">Medical appointment </option>
+                    <option value="Gynecologist appointment">Gynecologist appointment</option>
                   </select>
                 </div>
                 <div className="form-group">
-                  <label for="message-text" className="col-form-label">
-                    Date
-                  </label>
+                  <label htmlFor="message-text" className="col-form-label">Date</label>
                   <input
                     className="form-control"
                     value={body?.date}
                     name="date"
                     id="message-text"
-                    onChange={(e) =>
-                      handleChange(e.target.value, e.target.name)
-                    }
+                    onChange={(e) => handleChange(e.target.value, e.target.name)}
                   ></input>
                 </div>
               </form>

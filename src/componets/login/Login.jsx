@@ -22,7 +22,7 @@ export default function Login({user, onLogIn}) {
     }
 
     return (
-        <>
+        <div>
             <div className="login">
                 {error && <p><strong>Oops</strong> {error}</p>}
                 <form onSubmit={onSubmit}>
@@ -40,6 +40,6 @@ export default function Login({user, onLogIn}) {
                     <button type="submit">Log In</button>
                 </form>
             </div>
-        </>
+        </div>
     )
 }
