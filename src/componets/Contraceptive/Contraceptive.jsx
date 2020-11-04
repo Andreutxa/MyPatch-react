@@ -19,11 +19,12 @@ export default function Contraceptive({user, onLogOut, props}) {
             </div>
 
             <div>
-                <div className='provisional'>
-                    <p>Contraceptive template??</p>
+                <div className='contraceptive-pic'>
+                    <img src="/images/patch-pic.png" alt="Contraceptive pic"/>
                 </div>
                 <div className='contraceptive-containers'>
                     <h6>X days remain for next reminder</h6>
+                    <p>Next reminder: reminder?</p>
                 </div>
             </div>
 

@@ -1,14 +1,15 @@
 import React, {useState} from 'react'
 import {Redirect, Route, Switch} from 'react-router-dom'
 import AuthenticateRoute from './componets/AuthenticateRoute/AuthenticateRoute'
-// import Header from './componets/header/Header'
 import Home from './componets/home/Home'
 import Login from './componets/login/Login'
 import Profile from './componets/Profile/Profile'
 import Contraceptive from './componets/Contraceptive/Contraceptive'
-import ReminderList from './componets/reminder-list/ReminderList'
-import ReminderSingle from './componets/reminderSingle/ReminderSingle'
+import ReminderList from './componets/ReminderList/ReminderList'
+import ReminderSingle from './componets/ReminderSingle/ReminderSingle'
 import CalendarView from './componets/Calendar/CalendarView'
+import EditProfile from './componets/Profile/EditProfile/EditProfile'
+import PeriodRoutine from './componets/PeriodRoutine/PeriodRoutine'
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
@@ -16,18 +17,13 @@ function App() {
   const onLogIn = (loggedInUser) => {
     //GUARDAR USUARIO EN COOKIE
     localStorage.setItem('user', JSON.stringify(loggedInUser))
-    setUser(loggedInUser)
+    setUser({...loggedInUser})
   }
 
   const onLogOut = () => {
     localStorage.removeItem('user')
     setUser(undefined)
   }
-
-  //PARA ENRUTAR USUARIOS CON ROL
-  // if (user) {
-  //   return <Redirect to='/home' />
-  // }
 
   return (
 
@@ -48,8 +44,16 @@ function App() {
             render={(props) => <Profile {...props} user={user} onLogOut={onLogOut} />} 
           />
           <Route 
+            path='/edit/profile' 
+            render={(props) => <EditProfile {...props} user={user} onLogOut={onLogOut} onLogIn={onLogIn} />} 
+          />
+          <Route 
             path='/contraceptive' 
             render={(props) => <Contraceptive {...props} user={user} onLogOut={onLogOut} />} 
+          />
+          <Route 
+            path='/period/routine' 
+            render={(props) => <PeriodRoutine {...props} user={user} onLogOut={onLogOut} />} 
           />
           <Route 
             path='/calendar' 

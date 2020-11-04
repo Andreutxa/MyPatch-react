@@ -1,0 +1,22 @@
+.edit-profile-flex {
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    width: 360px;
+    background-color: #E5E5E5;
+    margin-left: 100px;
+    /* height: 456px !important; */
+}
+
+.edit-main-pic {
+    width: 360px;
+    height: 200px;
+    background-color: #17264D;
+    border-radius: 16px;
+}
+
+.edit-main-pic h4 {
+    margin-left: 50px;
+    margin-top: 30px;
+    color: #E8EEFA;
+}

@@ -1,15 +1,13 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import Dropdown from '../Dropdown/Dropdown'
 import Nav from '../Nav/Nav'
-import {getProfile} from '../../services/mypatch-api.service'
+import {getProfile, editUser} from '../../services/mypatch-api.service'
 import './Profile.css'
 
 
 export default function Profile({user, onLogOut, props}) {
 
-    // getProfile(user.id)
-    console.log(user.avatar);
     return (
         <div className='profile-flex'>
 
@@ -21,11 +19,14 @@ export default function Profile({user, onLogOut, props}) {
                     <h6>{user.age} years</h6>
                     <img src={user.avatar} width="130" className="mr-2 rounded-circle" alt={user.name}/>
                 </div>
+                <div className='edit-btn'>
+                    <Link to='/edit/profile'>Edit</Link>
+                </div>
             </div>
 
             <div>
                 <div className='profile-containers'>
-                    <Link to='/contrateptive'>
+                    <Link to='/contraceptive'>
                         <h6>My {user.contraceptionMth}</h6>
                     </Link>
                 </div>
@@ -35,7 +36,7 @@ export default function Profile({user, onLogOut, props}) {
                     </Link>
                 </div>
                 <div className='profile-containers'>
-                    <Link to='/period'>
+                    <Link to='/period/routine'>
                         <h6>My monthly friend</h6>
                     </Link>
                 </div>

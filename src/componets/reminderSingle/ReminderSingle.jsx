@@ -1,16 +1,14 @@
-import './reminderSingle.css'
+import './ReminderSingle.css'
 import React, {useState, useEffect} from 'react'
 import {deleteRem, editReminder, singleReminder} from '../../services/mypatch-api.service'
-import {Link, Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 
 export default function ReminderSingle(props) {
     const [rem, setRem] = useState([])
     const [showModal, setShowModal] = useState(false)
     const [body, setBody] = useState(null)
     const remId = props.location.state.id
-
-    // const [user] = useState(props.user) <-- usar en profile
-    // const [reviews, setReviews] = useState([])
+    const [redirect, setRedirect] = useState(false)
 
     useEffect(() => {
         singleReminder(remId)
@@ -41,25 +39,25 @@ export default function ReminderSingle(props) {
                 return (
                     setRem(editedReminder),
                     setShowModal(false)
-                    )
+                )
             })
             
             .catch((e) => console.log(e))
     }
 
-    const deleteReminder = (e) => {
-        e.preventDefault()
+    const deleteReminder = () => {
         deleteRem(remId)
             .then(() => {
                 console.log('Reminder removed')
-                return (<Redirect to='/reminders' />)
+                return (
+                    setRedirect(true)
+                )
             })
             .catch((e) => console.log(e))
     }
 
-    const redirectToReminders = (e) => {
-            e.preventDefault()
-            return <Redirect to='/reminders' />
+    if (redirect) {
+        return <Redirect to='/reminders' />
     }
 
     return (
@@ -68,28 +66,9 @@ export default function ReminderSingle(props) {
             <div>{rem.description}</div>
             <div>{rem.type}</div>
             <div>{rem.date}</div>
-            {/* <div>
-                <strong>Score</strong> 
-                {reviews.reduce((acc,el) => (acc + parseInt(el.score)) , 0) / reviews.length}
-            </div> */}
-            {/* <div><img src={rem.image} alt={`${rem.name} pic`} /></div> */}
-            <hr />
-            {/* <h1>Reviews</h1> */}
-            {/* <div className="row">
-                {reviews.map(el => (
-                    <div className="col-12 col-sm-4">
-                        <h3>{el.title}</h3>
-                        <p>{el.description}</p>
-                        <p><smal>{el.score}</smal></p>
-                        <p><strong>posted by</strong> <img src={el.user.image} alt=""/>{el.user.name}</p>
-                    </div>
-                ))}
-            </div> */}
-            <hr />
-
 
             <button type="button" className="btn btn-primary" onClick={() => setShowModal(true)}>Edit reminder</button>
-            <Link to='/reminders' onClick={deleteReminder, redirectToReminders} className="product-card__single">Delete reminder</Link>
+            <button onClick={() => deleteReminder()} className="product-card__single">Delete reminder</button>
 
             {showModal && 
             <div className="modal" id="exampleModal" style={{ display: "block"}}>
@@ -124,8 +103,6 @@ export default function ReminderSingle(props) {
                                         <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)} >Close</button>
                                         <button type="submit" className="btn btn-primary" onClick={onSubmit} >Edit reminder</button>
                                     </div>
-                               
-                               
                             </form>
                         </div>
                     </div>

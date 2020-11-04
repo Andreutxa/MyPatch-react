@@ -19,6 +19,11 @@ export const getProfile = (id) => {
         .then((res) => res.data)
 }
 
+export const editUser = (id, body) => {
+    return axios.post(`/users/${id}/edit`, body)
+    .then((res) => res.data)
+}
+
 export const getReminders = () => {
     return axios.get('/reminders')
         .then((res) => res.data)
@@ -29,8 +34,8 @@ export const singleReminder = (id) => {
         .then((res) => res.data)
 }
 
-export const createReminder = () => {
-    axios.post('/reminder/new')
+export const createReminder = (body) => {
+    return axios.post('/reminder/new', body)
         .then((res) => res.data)
 }
 

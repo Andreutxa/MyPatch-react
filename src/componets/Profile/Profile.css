@@ -18,7 +18,7 @@
     margin: 50px 22px;
 }
 
-.profile-containers h6, p{
+.profile-containers h6, .profile-containers p{
     color: #17264D;
     margin-top: -5px !important;
     padding-left: 15px;
@@ -37,4 +37,20 @@
 
 .profile-deco {
     text-align: center;
+}
+
+.edit-btn {
+    background-color:#F6B291;
+    padding: 5px 2px;
+    border-radius: 10px;
+    width: 50px;
+    text-align: center;
+    margin-left: 280px;
+    margin-top: -30px;
+}
+
+.edit-btn a {
+    color: #17264D;
+    text-decoration: none;
+    font-weight: 500;
 }

@@ -1,7 +1,7 @@
 import './ReminderList.css'
 import React, {useEffect, useState} from 'react'
 import {getReminders} from '../../services/mypatch-api.service'
-import ReminderCard from '../reminder-card/ReminderCard'
+import ReminderCard from '../ReminderCard/ReminderCard'
 
 export default function ReminderList({onLogOut}) {
 
@@ -37,6 +37,7 @@ export default function ReminderList({onLogOut}) {
                         type={reminder.type}
                         date={reminder.date}
                         id={reminder.id}
+                        key={reminder.id}
                     />
                 )}
             </div>

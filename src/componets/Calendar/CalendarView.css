@@ -6,7 +6,7 @@
     width: 360px;
     background-color: #ebebeb;
     margin-left: 100px;
-    /* height: 456px !important; */
+    height: 456px !important; 
 }
 
 .calendar-containers {
@@ -18,7 +18,7 @@
     margin: 50px 22px;
 }
 
-.calendar-containers h6, p{
+.calendar-containers h6, .calendar-containers p{
     color: #17264D;
     margin-top: -5px !important;
     padding-left: 15px;
@@ -37,6 +37,7 @@
 
 .calendar-deco {
     text-align: center;
+    margin-top: -25px;
 }
 
 .calendar-position {
@@ -70,4 +71,8 @@
 .calendar-link a {
     text-decoration: none;
     color: #F6B291;
+}
+
+.calendar-pic-position {
+    margin-bottom: 10px;
 }

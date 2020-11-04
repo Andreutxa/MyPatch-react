@@ -13,7 +13,7 @@ export default function Home({user, onLogOut}) {
                 {user ? (<Dropdown user={user} onLogOut={onLogOut}/>): ('')}
                 <div className='home-deco'>
                     <h4>MY PATCH</h4>
-                    <img src="" alt="Home pic"/>
+                    <img src="/images/routine.png" alt="Home pic"/>
                 </div>
             </div>
 
