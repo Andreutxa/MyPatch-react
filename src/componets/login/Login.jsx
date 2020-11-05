@@ -2,7 +2,7 @@ import './Login.css'
 import React, {useState} from 'react'
 import InputWithLabel from '../input-with-label/InputWithLabel'
 import {login} from '../../services/mypatch-api.service'
-import {Redirect} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 
 export default function Login({user, onLogIn}) {
     const [email, setEmail] = useState('')
@@ -25,6 +25,9 @@ export default function Login({user, onLogIn}) {
         <div>
             <div className="login">
                 {error && <p><strong>Oops</strong> {error}</p>}
+                <div>
+                    <img src="/images/mypatch-logo.png" alt="MyPatch logo"/>
+                </div>
                 <form onSubmit={onSubmit}>
                     <InputWithLabel
                         value={email}
@@ -39,6 +42,9 @@ export default function Login({user, onLogIn}) {
                         onChange={(e) => setPassword(e.target.value)} />
                     <button type="submit">Log In</button>
                 </form>
+                <div>
+                    <p>Don't have an account? <Link to='/register'>Register here</Link></p>
+                </div>
             </div>
         </div>
     )

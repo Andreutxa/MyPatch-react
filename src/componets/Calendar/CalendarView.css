@@ -9,6 +9,13 @@
     height: 456px !important; 
 }
 
+.calendar-main-info {
+    overflow: scroll;
+    min-height: 300px;
+    background-color: #ebebeb;
+
+}
+
 .calendar-containers {
     width: 312px;
     height: 87px;
@@ -45,9 +52,48 @@
     border: 1px solid black;
 }
 
+.calendar-flex-btns {
+    display: flex;
+    flex-direction: row;
+    margin-top: -20px;
+}
+
+.add-rem-flex {
+    width: 270px;
+    margin: auto;
+    border-bottom: 1px solid #17264D;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.add-rem-flex h4 {
+    color: #17264D;
+}
+
 .calendar-btn button {
+    /* margin-top: 20px; */
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    color: #FFFFFF !important;
+    border: 1px solid  #F6B291;
+    border-radius: 50px;
+    background-color: #F6B291;
+    font-weight: bold;
+    font-size: small;
+}
+
+.calculate-imp-reminders-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.calendar-link {
     margin-top: 20px;
-    width: 228px;
+    width: 100px;
     height: 40px;
     text-align: center;
     color: #FFFFFF !important;
@@ -55,24 +101,50 @@
     border-radius: 38px;
     background-color: #F6B291;
     font-weight: bold;
-}
-
-.calendar-link {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    width: 228px;
-    height: 40px;
-    text-align: center;
-    border-radius: 38px;
+    font-size: small;
     border: 2px solid  #F6B291;
     background-color: #ffffffb8;
 }
 
 .calendar-link a {
+    margin-top: 20px;
     text-decoration: none;
     color: #F6B291;
 }
 
 .calendar-pic-position {
     margin-bottom: 10px;
+}
+
+.all-reminders-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 320px;
+    background-color: #17264deb;
+    border: 1px solid #17264D;
+    border-radius: 7px;
+    margin: 2px auto;
+}
+
+.reminder-title {
+    color: #E8EEFA;
+    padding-top: 10px;
+}
+
+.reminder-props {
+    /* padding-top: 10px; */
+    text-align: center;
+    border: 1px solid wheat;
+    border-radius: 10px;
+    width: 100px;
+    height: 30px;
+    margin-top: 5px;
+}
+
+.reminder-props p {
+    padding-top: 6px;
+    margin-left: -12px;
+    color: #E8EEFA;
+    text-align: center;
 }

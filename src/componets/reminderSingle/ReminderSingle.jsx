@@ -5,11 +5,10 @@ import {Redirect} from 'react-router-dom'
 
 export default function ReminderSingle(props) {
     const [rem, setRem] = useState([])
+    const [body, setBody] = useState({title: '', date: ''})
     const [showModal, setShowModal] = useState(false)
-    const [body, setBody] = useState(null)
-    const remId = props.location.state.id
+    const remId = props.id
     const [redirect, setRedirect] = useState(false)
-
     useEffect(() => {
         singleReminder(remId)
             .then(response => {
@@ -46,6 +45,7 @@ export default function ReminderSingle(props) {
     }
 
     const deleteReminder = () => {
+        
         deleteRem(remId)
             .then(() => {
                 console.log('Reminder removed')
@@ -57,21 +57,36 @@ export default function ReminderSingle(props) {
     }
 
     if (redirect) {
-        return <Redirect to='/reminders' />
+        return <Redirect to='/calendar' />
     }
 
     return (
         <div>
-            <div>{rem.title}</div>
-            <div>{rem.description}</div>
-            <div>{rem.type}</div>
-            <div>{rem.date}</div>
+            <div className='all-reminders-flex' key={remId}>
+                <div className='reminder-title'>
+                    <h5>{props.title}</h5>
+                </div>
+                {/* <div className='reminder-props'>
+                    <p>{reminder.type}</p>
+                </div> */}
+                <div className='reminder-props'>
+                    <p>{props.originalFormatDate}</p>
+                </div>
+                <div>
+                    <button type="button" className="" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">E</button>
+                </div>
 
+                <div>
+                    <button onClick={() => deleteReminder()} className="">D</button>
+                </div>
+
+            </div>
+{/* 
             <button type="button" className="btn btn-primary" onClick={() => setShowModal(true)}>Edit reminder</button>
-            <button onClick={() => deleteReminder()} className="product-card__single">Delete reminder</button>
+            <button onClick={() => deleteReminder()} className="product-card__single">Delete reminder</button> */}
 
             {showModal && 
-            <div className="modal" id="exampleModal" style={{ display: "block"}}>
+            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -86,21 +101,21 @@ export default function ReminderSingle(props) {
                                     <label htmlFor="recipient-name" className="col-form-label">Title</label>
                                     <input value={body?.title} type="text" className="form-control" id="recipient-name" name="title" placeholder={rem.title} onChange={(e) => handleChange(e.target.value, e.target.name)}/>
                                 </div>
-                                <div className="form-group">
+                                {/* <div className="form-group">
                                     <label htmlFor="exampleFormControlTextarea1">Description</label>
                                     <textarea value={body?.description} className="form-control" id="exampleFormControlTextarea1" name="description" rows="3" placeholder={rem.description} onChange={(e) => handleChange(e.target.value, e.target.name)}></textarea>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="recipient-price" className="col-form-label">Type</label>
                                     <input value={body?.type} type="text" className="form-control" id="recipient-price" name="type" placeholder={rem.type} onChange={(e) => handleChange(e.target.value, e.target.name)}/>
-                                </div>
+                                </div> */}
                                 <div className="form-group">
                                     <label htmlFor="recipient-image" className="col-form-label">Date</label>
                                     <input value={body?.date} type="text" className="form-control" id="recipient-image" name="date" placeholder={rem.date} onChange={(e) => handleChange(e.target.value, e.target.name)}/>
                                 </div>
                                
                                     <div className="modal-footer">
-                                        <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)} >Close</button>
+                                        <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Close</button>
                                         <button type="submit" className="btn btn-primary" onClick={onSubmit} >Edit reminder</button>
                                     </div>
                             </form>

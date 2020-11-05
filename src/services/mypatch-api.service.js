@@ -14,8 +14,8 @@ export const logout = () => {
 }
 
 //userInfo ??
-export const getProfile = (id) => {
-    return axios.get(`/user/${id}`)
+export const getProfile = () => {
+    return axios.get('/user')
         .then((res) => res.data)
 }
 
@@ -26,6 +26,26 @@ export const editUser = (id, body) => {
 
 export const getReminders = () => {
     return axios.get('/reminders')
+        .then((res) => res.data)
+}
+
+export const getPeriods = () => {
+    return axios.get('/periods')
+        .then((res) => res.data)
+}
+
+export const createPeriods = (body) => {
+    return axios.post('/period/new', body)
+        .then((res) => res.data)
+}
+
+export const getContraceptive = () => {
+    return axios.get('/contraceptive')
+        .then((res) => res.data)
+}
+
+export const createContraceptive = (body) => {
+    return axios.post('/contraceptive/new', body)
         .then((res) => res.data)
 }
 

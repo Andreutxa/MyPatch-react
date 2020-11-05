@@ -11,7 +11,7 @@
 
 .contraceptive-containers {
     width: 312px;
-    height: 87px;
+    height: 115px;
     background-color: #ffffff;
     box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.12);
     border-radius: 16px;
@@ -20,9 +20,21 @@
 }
 
 .contraceptive-containers h6 {
-    padding-top: 33px;
+    padding-top: 23px;
     color: #17264D;
 }
+
+.create-contr-rem {
+    background-color: #17264D;
+    color: #E8EEFA;
+    border: 1px solid #17264D;
+    border-radius: 10px;
+    box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* .contraceptive-containers button {
+
+} */
 
 .main-pic {
     width: 360px;
