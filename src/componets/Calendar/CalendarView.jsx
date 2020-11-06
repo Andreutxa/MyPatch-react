@@ -13,17 +13,18 @@ import ReminderSingle from "../ReminderSingle/ReminderSingle";
 
 export default function CalendarView({ user, onLogOut, props }) {
     const options = {
-        position: 'bottom-right',
+        position: 'top-center',
         style: {
-          backgroundColor: 'midnightblue',
-          border: '2px solid lightgreen',
-          color: 'lightblue',
-          fontFamily: 'Menlo, monospace',
+          backgroundColor: '#68BEA7',
+          border: '2px solid #2d6656',
+          borderRadius: '10px',
+          color: '#FFFFFF',
+          fontFamily: 'Montserrat',
           fontSize: '20px',
           textAlign: 'center',
         },
         closeStyle: {
-          color: 'lightcoral',
+          color: '#2d6656',
           fontSize: '16px',
         },
     }
@@ -60,7 +61,7 @@ export default function CalendarView({ user, onLogOut, props }) {
                     return reminder.date === convertDate(new Date())
                 })
                 
-                if (findRemin) openSnackbar(`Remember ${findRemin.title}`)
+                if (findRemin) openSnackbar(`Remember! ${findRemin.title}`)
                 
                 // console.log(convertDate(new Date()))
                 return setReminderList((old) => [...old, ...formattedList(reminders)])
@@ -211,7 +212,6 @@ export default function CalendarView({ user, onLogOut, props }) {
                                         <option selected={body?.type}>Open to choose</option>
                                         <option value={body?.type}>Medical appointment </option>
                                         <option value={body?.type}>Gynecologist appointment</option>
-                                        <option value={body?.type}>Another appointment</option>
                                     </select>
                                 </div>
                                 <div className="form-group">

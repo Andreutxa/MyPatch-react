@@ -9,13 +9,16 @@
     z-index: 4;
     padding: 4px;
     color: #17264D;
+    /* margin-right: 15px;
+    padding-top: 10px; */
     /* color de los números */
 }
 
 .fc .fc-col-header-cell-cushion {
     display: inline-block;
     padding: 2px 4px;
-    color: #6E767D;
+    color: #17264D;
+    
     /* color de  días de la semana*/
 }
 
@@ -88,4 +91,16 @@ table {
     margin-bottom: 0px;
 }
 
+thead {
+    border-color: #ebebeb !important;
+}
 
+.fc, tr {
+    border-color: #ebebeb !important;
+}
+
+
+/* .element.style {
+    height: 200px;
+}  */
+/* CONTROLA EL TAMAÑO DEL CALENDARIO */
