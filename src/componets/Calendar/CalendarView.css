@@ -3,17 +3,22 @@
     flex-direction: column;
     align-content: space-around;
     color: #E8EEFA;
-    width: 360px;
     background-color: #ebebeb;
     margin-left: 100px;
-    height: 456px !important; 
+    width: 375px;
+    height: 695px;
+    margin: auto;
+    box-shadow: 0px 0px 15px 5px #001035;
+    border-radius: 38px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
 }
 
 .calendar-main-info {
     overflow: scroll;
     min-height: 300px;
     background-color: #ebebeb;
-
+  margin-bottom: 10px;
 }
 
 .calendar-containers {
@@ -47,8 +52,13 @@
     margin-top: -25px;
 }
 
+.calendar-deco h4 {
+    -webkit-animation: tracking-in-expand 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+	animation: tracking-in-expand 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}
+
 .calendar-position {
-    margin: 20px 30px;
+    margin: 10px 10px;
     border: 1px solid black;
 }
 
@@ -61,6 +71,7 @@
 .add-rem-flex {
     width: 270px;
     margin: auto;
+    margin-top: 10px;
     border-bottom: 1px solid #17264D;
     margin-bottom: 10px;
     display: flex;
@@ -85,18 +96,49 @@
     font-size: small;
 }
 
+.calendar-btn button:hover {
+    -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
+	animation: heartbeat 1.5s ease-in-out infinite both;
+}
+
+.add-icon {
+    margin-left: -2px;
+    width: 20px;
+    height: auto;
+}
+
+.add-icon:hover {
+    margin-left: -2px;
+    width: 20px;
+    height: auto;
+    -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
+	animation: heartbeat 1.5s ease-in-out infinite both;
+}
+
 .calculate-imp-reminders-flex {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    margin-top: 5px;
 }
 
 .calendar-link {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* .calendar-link:hover {
+    color:  #FFFFFF !important;
+    background-color: #F6B291 !important;
+} */
+
+.calendar-link a {
     margin-top: 20px;
-    width: 100px;
-    height: 40px;
+    text-decoration: none;
+    color: #F6B291;
+    padding: 10px 30px;
     text-align: center;
-    color: #FFFFFF !important;
+    color: #F6B291 !important;
     border: 1px solid  #F6B291;
     border-radius: 38px;
     background-color: #F6B291;
@@ -106,10 +148,9 @@
     background-color: #ffffffb8;
 }
 
-.calendar-link a {
-    margin-top: 20px;
-    text-decoration: none;
-    color: #F6B291;
+.calendar-link a:hover {
+    color:   #FFFFFF !important;
+    background-color:  #F6B291 !important;
 }
 
 .calendar-pic-position {
@@ -148,3 +189,141 @@
     color: #E8EEFA;
     text-align: center;
 }
+
+.modal-title {
+  color: #E8EEFA;
+}
+
+.col-form-label {
+  color: #17264D;
+}
+
+.modal {
+  width: 360px;
+  margin-top: 100px;
+  margin-left: 540px;
+}
+
+.modal-footer {
+  background-color: #17264D;
+}
+
+.modal-header {
+  background-color: #17264D;
+  color: #E8EEFA;
+}
+
+.btn {
+  color: #E8EEFA;
+  border: 1px solid #E8EEFA;
+  border-radius: 10px;
+}
+
+.btn:hover {
+  background-color: #E8EEFA;
+  color: #17264D;
+}
+
+.close {
+  color: #E8EEFA;
+}
+
+.close:hover {
+  color: #E8EEFA;
+}
+
+/* ANIMATIONS */
+
+@-webkit-keyframes heartbeat {
+    from {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      -webkit-transform-origin: center center;
+              transform-origin: center center;
+      -webkit-animation-timing-function: ease-out;
+              animation-timing-function: ease-out;
+    }
+    10% {
+      -webkit-transform: scale(0.91);
+              transform: scale(0.91);
+      -webkit-animation-timing-function: ease-in;
+              animation-timing-function: ease-in;
+    }
+    17% {
+      -webkit-transform: scale(0.98);
+              transform: scale(0.98);
+      -webkit-animation-timing-function: ease-out;
+              animation-timing-function: ease-out;
+    }
+    33% {
+      -webkit-transform: scale(0.87);
+              transform: scale(0.87);
+      -webkit-animation-timing-function: ease-in;
+              animation-timing-function: ease-in;
+    }
+    45% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      -webkit-animation-timing-function: ease-out;
+              animation-timing-function: ease-out;
+    }
+  }
+  @keyframes heartbeat {
+    from {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      -webkit-transform-origin: center center;
+              transform-origin: center center;
+      -webkit-animation-timing-function: ease-out;
+              animation-timing-function: ease-out;
+    }
+    10% {
+      -webkit-transform: scale(0.91);
+              transform: scale(0.91);
+      -webkit-animation-timing-function: ease-in;
+              animation-timing-function: ease-in;
+    }
+    17% {
+      -webkit-transform: scale(0.98);
+              transform: scale(0.98);
+      -webkit-animation-timing-function: ease-out;
+              animation-timing-function: ease-out;
+    }
+    33% {
+      -webkit-transform: scale(0.87);
+              transform: scale(0.87);
+      -webkit-animation-timing-function: ease-in;
+              animation-timing-function: ease-in;
+    }
+    45% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      -webkit-animation-timing-function: ease-out;
+              animation-timing-function: ease-out;
+    }
+  }
+
+  @-webkit-keyframes tracking-in-expand {
+    0% {
+      letter-spacing: -0.5em;
+      opacity: 0;
+    }
+    40% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes tracking-in-expand {
+    0% {
+      letter-spacing: -0.5em;
+      opacity: 0;
+    }
+    40% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+    }
+  }

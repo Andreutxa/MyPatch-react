@@ -1,24 +1,16 @@
 import './ReminderSingle.css'
 import React, {useState, useEffect} from 'react'
-import {deleteRem, editReminder, singleReminder} from '../../services/mypatch-api.service'
+import {deleteRem, editReminder} from '../../services/mypatch-api.service'
 import {Redirect} from 'react-router-dom'
+import { BiCalendarEdit, BiCalendarX } from 'react-icons/bi';
 
 export default function ReminderSingle(props) {
     const [rem, setRem] = useState([])
-    const [body, setBody] = useState({title: '', date: ''})
+    const [body, setBody] = useState({title: props.title, date: props.date})
     const [showModal, setShowModal] = useState(false)
     const remId = props.id
+    console.log(showModal)
     const [redirect, setRedirect] = useState(false)
-    useEffect(() => {
-        singleReminder(remId)
-            .then(response => {
-                const {title, description, date, type} = response.reminder
-                setRem(response.reminder)
-                setBody({ title, description, date, type })
-            })
-            .catch((e) => console.log(e))
-            
-    }, [])
 
     const handleChange = (val, name) => {
         setBody({
@@ -36,7 +28,13 @@ export default function ReminderSingle(props) {
             .then(editedReminder => {
                 console.log('Reminder edited', editedReminder)
                 return (
-                    setRem(editedReminder),
+                    // setRem(editedReminder),
+                    props.setReminderList((old) => {
+            
+                        const newRemList = old.map(e => e.id === editedReminder.id ? editedReminder : e)
+                        console.log(newRemList)
+                        return [...newRemList]
+                    }),
                     setShowModal(false)
                 )
             })
@@ -47,11 +45,13 @@ export default function ReminderSingle(props) {
     const deleteReminder = () => {
         
         deleteRem(remId)
-            .then(() => {
-                console.log('Reminder removed')
-                return (
-                    setRedirect(true)
-                )
+            .then((deletedReminder) => {
+                console.log('Reminder removed', deletedReminder)
+                props.setReminderList((old) => {
+                    const newList = old.filter(e => e.id !== deletedReminder.id)
+                    console.log('new list', newList)
+                    return [...newList]
+                })
             })
             .catch((e) => console.log(e))
     }
@@ -72,12 +72,13 @@ export default function ReminderSingle(props) {
                 <div className='reminder-props'>
                     <p>{props.originalFormatDate}</p>
                 </div>
-                <div>
-                    <button type="button" className="" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">E</button>
-                </div>
-
-                <div>
-                    <button onClick={() => deleteReminder()} className="">D</button>
+                <div className='test5'>
+                    <div>
+                        <button type="button" onClick={() => setShowModal(true)} className='edit-rem-btn'><BiCalendarEdit className='edit-icon-size'/></button>
+                    </div>
+                    <div>
+                        <button onClick={() => deleteReminder()} className='delete-rem-btn'><BiCalendarX className='delete-icon-size'/></button>
+                    </div>
                 </div>
 
             </div>
@@ -86,12 +87,12 @@ export default function ReminderSingle(props) {
             <button onClick={() => deleteReminder()} className="product-card__single">Delete reminder</button> */}
 
             {showModal && 
-            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal edit-animation" id="myeditingmodal">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Editing reminder</h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <h5 className="modal-title" >Editing reminder</h5>
+                            <button type="button" className="close" onClick={() => setShowModal(false)} aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -114,11 +115,11 @@ export default function ReminderSingle(props) {
                                     <input value={body?.date} type="text" className="form-control" id="recipient-image" name="date" placeholder={rem.date} onChange={(e) => handleChange(e.target.value, e.target.name)}/>
                                 </div>
                                
-                                    <div className="modal-footer">
-                                        <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Close</button>
-                                        <button type="submit" className="btn btn-primary" onClick={onSubmit} >Edit reminder</button>
-                                    </div>
                             </form>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn" onClick={() => setShowModal(false)}>Close</button>
+                            <button type="submit" className="btn" onClick={onSubmit} >Edit reminder</button>
                         </div>
                     </div>
                 </div> 

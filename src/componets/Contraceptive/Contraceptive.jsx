@@ -61,15 +61,16 @@ export default function Contraceptive({onLogOut, props}) {
     return (
         <div className='contraceptive-flex'>
 
-            <div className='main-pic'>
+            <div className='main-pic-contrc'>
                 {user ? (<Dropdown user={user} onLogOut={onLogOut}/>): ('')}
                 <div className='contraceptive-deco'>
                     <h4>{user?.name}'s {user?.contraceptionMth}</h4>
-                    <img src={user?.avatar} width="130" className="mr-2 rounded-circle" alt={user ? user.name : 'User pic'}/>
+                    <img src='https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png' width="130" className="mr-2 rounded-circle" alt={user ? user.name : 'User pic'}/>
+                    {/* <img src={user?.avatar} width="130" className="mr-2 rounded-circle" alt={user ? user.name : 'User pic'}/> */}
                 </div>
             </div>
 
-            <div>
+            <div className='contracep-main-info'>
                 <div className='contraceptive-pic'>
                     <img src="/images/patch-pic.png" alt="Contraceptive pic"/>
                 </div>

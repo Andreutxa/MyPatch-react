@@ -7,6 +7,7 @@ import { getReminders, createReminder, getPeriods, getContraceptive, deleteRem, 
 import { useSnackbar } from 'react-simple-snackbar'
 import "./CalendarView.css";
 import { convertDate } from "../../helpers/helpers";
+import { BiPlusMedical, BiCalendarPlus } from 'react-icons/bi';
 // import ReminderCard from "../ReminderCard/ReminderCard";
 import ReminderSingle from "../ReminderSingle/ReminderSingle";
 
@@ -29,7 +30,7 @@ export default function CalendarView({ user, onLogOut, props }) {
 
     const [openSnackbar, closeSnackbar] = useSnackbar(options)
     const [reminderList, setReminderList] = useState([]);
-    const [body, setBody] = useState(null);
+    const [body, setBody] = useState({title: '', date: ''});
     const [periodDate, setPeriodDate] = useState(user.period)
     const [error, setError] = useState();
 
@@ -86,6 +87,8 @@ export default function CalendarView({ user, onLogOut, props }) {
             })
             .catch((e) => console.log(e))
     }, []);
+
+    
 
     // useEffect(() => {
      
@@ -168,8 +171,8 @@ export default function CalendarView({ user, onLogOut, props }) {
                     <div className='add-rem-flex'>
                         <h4>Reminders</h4>
                         <div className="calendar-btn">
-                            <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
-                                +
+                            <button type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+                                <BiCalendarPlus className='add-icon'/>
                             </button>
                         </div>
                         <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -178,7 +181,7 @@ export default function CalendarView({ user, onLogOut, props }) {
                         <div className="modal-header">
                             <h5 className="modal-title" id="exampleModalLabel">New reminder</h5>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                                <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div className="modal-body">
@@ -205,14 +208,10 @@ export default function CalendarView({ user, onLogOut, props }) {
                                         onChange={(e) => handleChange(e.target.value, e.target.name)}
                                     >
                                         {/* <option value={body?.type}>Period</option> */}
-                                        <option value={body?.type}>Take pill</option>
-                                        <option value={body?.type}>Change patch</option>
-                                        <option value={body?.type}>Change ring</option>
-                                        <option value={body?.type}>Take injection</option>
-                                        <option value={body?.type}>Change IUD</option>
-                                        <option value={body?.type}>Change IUS</option>
+                                        <option selected={body?.type}>Open to choose</option>
                                         <option value={body?.type}>Medical appointment </option>
                                         <option value={body?.type}>Gynecologist appointment</option>
+                                        <option value={body?.type}>Another appointment</option>
                                     </select>
                                 </div>
                                 <div className="form-group">
@@ -228,10 +227,10 @@ export default function CalendarView({ user, onLogOut, props }) {
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-dismiss="modal">
+                            <button type="button" className="btn" data-dismiss="modal">
                                 Close
                             </button>
-                            <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={onSubmit}>
+                            <button type="button" className="btn" data-dismiss="modal" onClick={onSubmit}>
                                 Save reminder
                             </button>
                         </div>
@@ -239,7 +238,7 @@ export default function CalendarView({ user, onLogOut, props }) {
                 </div>
             </div>
 
-                    </div>
+                </div>
                     {reminderList.length && reminderList.map((reminder) => { 
                         
                         const currentMonth = Number(convertDate(new Date()).split('/')[1]);
@@ -248,6 +247,7 @@ export default function CalendarView({ user, onLogOut, props }) {
                             const originalFormatDate = reminder.date.split('-').reverse().join('/')
                             return (
                                 <ReminderSingle
+                                    setReminderList={setReminderList}
                                     originalFormatDate={originalFormatDate}
                                     title={reminder.title}
                                     type={reminder.type}

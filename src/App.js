@@ -10,6 +10,7 @@ import ReminderSingle from './componets/ReminderSingle/ReminderSingle'
 import CalendarView from './componets/Calendar/CalendarView'
 import EditProfile from './componets/Profile/EditProfile/EditProfile'
 import PeriodRoutine from './componets/PeriodRoutine/PeriodRoutine'
+import './App.css'
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))

@@ -7,3 +7,12 @@
 .dropdown-prof-log a:hover {
     color: #F6B291;
 }
+
+.menu-size {
+    width: 30px;
+    height: auto;
+}
+
+.hide-border-color {
+    border-color: #17264D !important;
+}

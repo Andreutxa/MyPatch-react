@@ -37,7 +37,7 @@ export default function Home({user, onLogOut}) {
                 </div>
             </div>
 
-            <div>
+            <div className='home-main-info'>
                 <div className='home-containers'>
                     <h6>Next patch</h6>
                     <p>{sortedContraceptive[0]?.start_date}</p>

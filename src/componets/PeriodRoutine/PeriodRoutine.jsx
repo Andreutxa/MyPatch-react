@@ -73,7 +73,7 @@ export default function PeriodRoutine({ onLogOut, props}) {
                 </button>
             </div>
 
-            <div>
+            <div className='routine-hr'>
                 <h4>Period record</h4>      
             </div>  
             

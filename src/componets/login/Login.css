@@ -1,5 +1,45 @@
 .login {
     background-color: #17264D;
-    width: 360px;
-    height: 768px;
+    width: 375px;
+    height: 736px;
+    margin: auto;
+    box-shadow: 0px 0px 15px 5px #001035;
 }
+
+.login-logo-pic img {
+    /* padding-top: 50px; */
+    width: 200px;
+    height: auto;
+    margin: 50px 90px 30px;
+}
+
+.login-form-container {
+    width: 340px;
+    padding: 20px 25px;
+    margin-left: 20px;
+}
+
+
+.login-form-container button{
+    width: 226px;
+    height: 40px;
+    margin: 10px 35px;
+    color: #FDFDFD;
+    border: 1px solid #F6B291;
+    background-color: #F6B291;
+    border-radius: 38px;
+}
+
+.register-link p {
+    margin-left: -8px;
+    padding-top: 30px;
+    font-size: 10px;
+    color: #FDFDFD;
+}
+
+.register-link a {
+    font-weight: bold;
+    text-decoration: none;
+    color: #F6B291;
+}
+

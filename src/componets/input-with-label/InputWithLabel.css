@@ -1,0 +1,29 @@
+.login-flex {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: auto;
+}
+
+.login-label {
+    width: 100px;
+    margin-left: 5px;
+    
+}
+
+.login-label label{
+    color: #E8EEFA;
+    padding: 5px 0px 5px 5px;
+}
+
+.login-input {
+    margin: 0px 0px 5px 0px;
+}
+
+.login-input input {
+    width: 290px;
+    border: 1px solid  #E8EEFA;
+    box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    padding: 12px;
+}

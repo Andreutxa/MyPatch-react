@@ -18,33 +18,37 @@ export default function Login({user, onLogIn}) {
     }
 
     if (user) {
-        return <Redirect to='/reminders' />
+        return <Redirect to='/home' />
     }
 
     return (
         <div>
             <div className="login">
                 {error && <p><strong>Oops</strong> {error}</p>}
-                <div>
+                <div className='login-logo-pic'>
                     <img src="/images/mypatch-logo.png" alt="MyPatch logo"/>
                 </div>
-                <form onSubmit={onSubmit}>
-                    <InputWithLabel
-                        value={email}
-                        label="email"
-                        type="email"
-                        onChange={(e) => setEmail(e.target.value)} />
-
-                    <InputWithLabel
-                        value={password}
-                        label="password"
-                        type="password"
-                        onChange={(e) => setPassword(e.target.value)} />
-                    <button type="submit">Log In</button>
-                </form>
                 <div>
-                    <p>Don't have an account? <Link to='/register'>Register here</Link></p>
+                    <form onSubmit={onSubmit} className='login-form-container'>
+                        <InputWithLabel
+                            value={email}
+                            label="Email"
+                            type="email"
+                            onChange={(e) => setEmail(e.target.value)} />
+
+                        <InputWithLabel
+                            value={password}
+                            label="Password"
+                            type="password"
+                            onChange={(e) => setPassword(e.target.value)} />
+
+                        <div className='register-link'>
+                            <p>Don't have an account? <Link to='/register'>Register here</Link></p>
+                        </div>
+                        <button className='login-btn' type="submit">Log In</button>
+                    </form>
                 </div>
+        
             </div>
         </div>
     )

@@ -19,6 +19,7 @@ export default function Calendar({user, onLogOut, events}) {
     return (
         <div className="product-list">
             <FullCalendar
+                // height='500'
                 className='calendar-size'
                 plugins={[ dayGridPlugin, interactionPlugin ]}
                 initialView="dayGridMonth"

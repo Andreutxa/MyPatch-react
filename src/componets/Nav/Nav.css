@@ -1,5 +1,5 @@
 nav {
-    width: 360px;
+    width: 375px;
     height: 62px;
     border-radius: 16px;
     background-color: #F6B291;
@@ -9,14 +9,30 @@ nav {
     padding-top: 20px;
 }
 
-/* si estás en la página, se ve oscuro, si no lo estás, más clarito */
-/* nav a {
-    color: #5A6581;
-    text-decoration: none;
-    font-weight: 400;
-} */
 nav a {
     color: #17264D;
     text-decoration: none !important;
     font-weight: bold;
 }
+
+nav a:hover {
+    color: #17264D;
+}
+
+.nav-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -10px;
+}
+
+.nav-icons {
+    width: 22px;
+    height: auto;
+    color: #17264D;
+}
+
+.nav-icons:hover {
+    color: #5A6581;
+}
+
