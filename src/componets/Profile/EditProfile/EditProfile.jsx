@@ -52,7 +52,7 @@ export default function EditProfile({ user, onLogOut, onLogIn }) {
         <h4>EDITING YOUR PROFILE</h4>
       </div>
 
-      <div style={{ overflow: "scroll", height: "350px" }}>
+      <div className='edit-profile-form'>
         <form>
           <div className="form-group">
             <label htmlFor="recipient-email" className="col-form-label">
@@ -170,11 +170,11 @@ export default function EditProfile({ user, onLogOut, onLogIn }) {
               onChange={(e) => handleChange(e.target.value, e.target.name)}
             />
           </div>
-          <button type="submit" className="btn btn-primary" onClick={onSubmit}>
-            Submit
-          </button>
         </form>
       </div>
+          <button type="submit" className="btn edit-profile-btn" onClick={onSubmit}>
+            Submit
+          </button>
 
       <Nav />
     </div>
