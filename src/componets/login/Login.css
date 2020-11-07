@@ -1,9 +1,12 @@
 .login {
     background-color: #17264D;
     width: 375px;
-    height: 736px;
+    height: 695px;
     margin: auto;
     box-shadow: 0px 0px 15px 5px #001035;
+    border-radius: 38px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
 }
 
 .login-logo-pic img {
