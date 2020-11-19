@@ -29,4 +29,3 @@ _Las herramientas usadas para realizar este proyecto son:_
 ## Autora ✒️
 
 * [Andrea Astorga Bilbao](https://github.com/Andreutxa)
->>>>>>> e3a5aecc69bd773120f51a435c8e18ba993632f5
