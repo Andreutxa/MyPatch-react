@@ -153,10 +153,6 @@ export default function EditProfile({ user, onLogOut, onLogIn }) {
               onChange={(e) => handleChange(e.target.value, e.target.name)}
             />
           </div>
-          {/* <div className="form-group">
-                        <label htmlFor="recipient-avatar" className="col-form-label">Avatar</label>
-                        <input value={body?.avatar} type="text" className="form-control" id="recipient-avatar" name="date" placeholder={profile.avatar} onChange={(e) => handleChange(e.target.value, e.target.name)}/>
-                    </div> */}
           <div className="form-group">
             <label htmlFor="recipient-avatar" className="col-form-label">
               Avatar

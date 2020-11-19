@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-// import {Link} from 'react-router-dom'
 import { createPeriods, getProfile, getPeriods } from '../../services/mypatch-api.service'
 import Dropdown from '../Dropdown/Dropdown'
 import Nav from '../Nav/Nav'
@@ -36,7 +35,6 @@ export default function PeriodRoutine({ onLogOut, props}) {
         ? new Date(dateObject.setTime( dateObject.getTime() + 28 * 86400000 ))
         : new Date(dateObject.setTime( dateObject.getTime() + (28 + 4 )* 86400000 ))
 
-        // const finalDate = dateObject.setDate(date.getDate() + 28);
         const day = ('0' + newDate.getDate()).slice(-2) 
         const month = newDate.getMonth() + 1
         const year = newDate.getFullYear()
@@ -77,16 +75,12 @@ export default function PeriodRoutine({ onLogOut, props}) {
                 <h4>Period record</h4>      
             </div>  
             
-            {/* <button onClick={() => createPeriod()}>
-                your last period was on {sortedPeriods[0]?.start_date}, add nex one?
-            </button> */}
             <div style={{overflow: 'scroll', height: '200px'}}>
                     
                 {sortedPeriods.map((period) => {
                     return (
                         <div>   
                             <div className='routine-containers'>
-                                {/* <h6>Your friend arrived on time</h6> */}
                                 <h5>{period.start_date}</h5>
                             </div>
                         </div>

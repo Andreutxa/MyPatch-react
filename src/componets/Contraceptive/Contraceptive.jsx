@@ -35,7 +35,6 @@ export default function Contraceptive({onLogOut, props}) {
         ? new Date(dateObject.setTime( dateObject.getTime() + 90 * 86400000 ))
         : new Date(dateObject.setTime( dateObject.getTime() + (28 + 4 )* 86400000 ))
 
-        // const finalDate = dateObject.setDate(date.getDate() + 28);
         const day = ('0' + newDate.getDate()).slice(-2) 
         const month = newDate.getMonth() + 1
         const year = newDate.getFullYear()
@@ -81,22 +80,6 @@ export default function Contraceptive({onLogOut, props}) {
                     </button>
                 </div>
             </div>
-
-            {/* <div style={{overflow: 'scroll', height: '100px', border: '1px solid black'}}>
-            
-                {sortedContraceptive.map((contraceptive) => {
-                    return (
-                        <div>
-                            <div className='routine-containers'>
-                                <h6>Your friend arrived on time</h6>
-                                <p>{contraceptive.start_date}</p>
-                            </div>
-                        </div>
-                    )
-                })}
-            </div> */}
-
-
             <Nav/>
 
         </div>

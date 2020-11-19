@@ -29,7 +29,6 @@ export default function ReminderList({onLogOut}) {
     } else {
         return (
             <div className="product-list">
-            {/* {console.log(reminderList)} */}
                 {reminderList.map((reminder) => 
                     <ReminderCard
                         title={reminder.title}
@@ -46,42 +45,3 @@ export default function ReminderList({onLogOut}) {
 
 
 }
-
-// const generateRandomColor = () => Math.floor(Math.random() * 16777215).toString(16)
-// export default function reminderList() {
-
-//     const [color, setColor] = useState('black')
-//     const [redirect, setRedirect] = useState(false)
-
-//     useEffect(() => {
-//         const interval = setInterval(() => setColor(`#${generateRandomColor()}`), 1000)
-//         const timeout = setTimeout(() => setRedirect(true), 5000)
-
-//         return () => {
-//             clearInterval(interval)
-//             clearInterval(timeout)
-//         }
-//     }, [])
-
-//     if (redirect) {
-//         return <Redirect to='/login' />
-//     }
-
-//     return (
-//         <p style={{color: color}}>Andrés</p>
-//     )
-// }
-
-
-// export default function EffectsExample(props) {
-
-//     const [state, setState] = useState()
-
-//     useEffect(() => {})
-//     useEffect(() => {}, [])
-//     useEffect(() => {}, [props.prop1, state])
-
-//     return (
-//         <div></div>
-//     )
-// }

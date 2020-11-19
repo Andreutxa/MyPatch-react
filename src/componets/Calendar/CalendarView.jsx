@@ -3,12 +3,11 @@ import MyCalendar from "./Calendar";
 import { Link } from "react-router-dom";
 import Dropdown from "../Dropdown/Dropdown";
 import Nav from "../Nav/Nav";
-import { getReminders, createReminder, getPeriods, getContraceptive, deleteRem, editReminder, singleReminder} from "../../services/mypatch-api.service";
+import { getReminders, createReminder, getPeriods, getContraceptive} from "../../services/mypatch-api.service";
 import { useSnackbar } from 'react-simple-snackbar'
 import "./CalendarView.css";
 import { convertDate } from "../../helpers/helpers";
-import { BiPlusMedical, BiCalendarPlus } from 'react-icons/bi';
-// import ReminderCard from "../ReminderCard/ReminderCard";
+import { BiCalendarPlus } from 'react-icons/bi';
 import ReminderSingle from "../ReminderSingle/ReminderSingle";
 
 export default function CalendarView({ user, onLogOut, props }) {
@@ -32,8 +31,8 @@ export default function CalendarView({ user, onLogOut, props }) {
     const [openSnackbar, closeSnackbar] = useSnackbar(options)
     const [reminderList, setReminderList] = useState([]);
     const [body, setBody] = useState({title: '', date: ''});
-    const [periodDate, setPeriodDate] = useState(user.period)
-    const [error, setError] = useState();
+    // const [periodDate, setPeriodDate] = useState(user.period)
+    // const [error, setError] = useState();
 
 
     const formattedPeriod = (period) => {
@@ -63,7 +62,6 @@ export default function CalendarView({ user, onLogOut, props }) {
                 
                 if (findRemin) openSnackbar(`Remember! ${findRemin.title}`)
                 
-                // console.log(convertDate(new Date()))
                 return setReminderList((old) => [...old, ...formattedList(reminders)])
             })
             .catch((e) => console.log(e));
@@ -88,26 +86,6 @@ export default function CalendarView({ user, onLogOut, props }) {
             })
             .catch((e) => console.log(e))
     }, []);
-
-    
-
-    // useEffect(() => {
-     
-
-    //     const endPeriodDate = (periodDate) => {
-    //         const splittedDate = periodDate.split("/");
-    //         let endDayNum = Number(splittedDate[0]);
-    //         let realEndDay = endDayNum += user.durationPeriod
-    //         let realEndDayString = realEndDay.toString()
-    //         let datecompleted = periodDate.replace(splittedDate[0] , realEndDayString)
-
-    //         return datecompleted.split("/").reverse().join("-");
-    //     }
-       
-    //     setReminderList((old) => {
-    //         return [...old, formattedPeriod(periodDate)]
-    //     })
-    // }, [periodDate, user])
 
     const handleChange = (val, name) => {
         setBody({
@@ -208,7 +186,6 @@ export default function CalendarView({ user, onLogOut, props }) {
                                         className="custom-select"
                                         onChange={(e) => handleChange(e.target.value, e.target.name)}
                                     >
-                                        {/* <option value={body?.type}>Period</option> */}
                                         <option selected={body?.type}>Open to choose</option>
                                         <option value={body?.type}>Medical appointment </option>
                                         <option value={body?.type}>Gynecologist appointment</option>
@@ -262,76 +239,7 @@ export default function CalendarView({ user, onLogOut, props }) {
 
             </div>
 
-            <Nav />
-
-            {/* <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">New reminder</h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div className="modal-body">
-                            <form>
-                                <div className="form-group">
-                                    <label htmlFor="recipient-name" className="col-form-label">
-                                        Title
-                                    </label>
-                                    <input
-                                    type="text"
-                                    value={body?.title}
-                                    name="title"
-                                    className="form-control"
-                                    id="recipient-name"
-                                    onChange={(e) => handleChange(e.target.value, e.target.name)}
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="message-text" className="col-form-label">Type</label>
-                                    <select
-                                        value={body?.type}
-                                        name="type"
-                                        className="custom-select"
-                                        onChange={(e) => handleChange(e.target.value, e.target.name)}
-                                    >
-                                         <option value={body?.type}>Period</option> 
-                                        <option value={body?.type}>Take pill</option>
-                                        <option value={body?.type}>Change patch</option>
-                                        <option value={body?.type}>Change ring</option>
-                                        <option value={body?.type}>Take injection</option>
-                                        <option value={body?.type}>Change IUD</option>
-                                        <option value={body?.type}>Change IUS</option>
-                                        <option value={body?.type}>Medical appointment </option>
-                                        <option value={body?.type}>Gynecologist appointment</option>
-                                    </select>
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="message-text" className="col-form-label">Date</label>
-                                    <input
-                                        className="form-control"
-                                        value={body?.date}
-                                        name="date"
-                                        id="message-text"
-                                        onChange={(e) => handleChange(e.target.value, e.target.name)}
-                                    ></input>
-                                </div>
-                            </form>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-dismiss="modal">
-                                Close
-                            </button>
-                            <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={onSubmit}>
-                                Save reminder
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
-
-            
+            <Nav />  
         </div>
     );
 }

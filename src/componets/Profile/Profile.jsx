@@ -27,7 +27,7 @@ export default function Profile({user, onLogOut, props}) {
                 </div>
             </div>
 
-            <div className='margin-with-profile-pic'>
+            <div className='margin-with-profile-piccod'>
                 <div className='profile-containers'>
                     <div className='profile-links'>
                         <Link to='/contraceptive'>

@@ -5,9 +5,7 @@ import './reminderCard.css'
 export default function ReminderCard({title, description, type, date, id}) {
     return (
         <div className="product-card">
-            {/* <div className="product-card__image" style={{background: `url(${image}) no-repeat center center / cover`}}></div> */}
             <h4>{title}</h4>
-            {/* <div className="product-card__price">{description}</div> */}
             <p>{type}</p>
             <p>{date}</p>
             <Link to={{
